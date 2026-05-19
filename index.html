@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sunward Step Manchester - a friendly weekly walking group and community events for connection, support and wellbeing." />
+  <title>Sunward Step Manchester</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(255, 198, 69, 0.22), transparent 32rem),
+        radial-gradient(circle at top right, rgba(0, 151, 207, 0.18), transparent 30rem),
+        #fff9e8;
+    }
+    .hero-pattern {
+      background-image:
+        radial-gradient(circle at 12% 20%, rgba(255,255,255,0.75) 0 1px, transparent 1px),
+        radial-gradient(circle at 82% 26%, rgba(255,255,255,0.55) 0 1px, transparent 1px);
+      background-size: 42px 42px, 58px 58px;
+    }
+  </style>
+</head>
+<body class="text-slate-900 antialiased">
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 border-b border-orange-200/70 bg-white/90 shadow-sm backdrop-blur">
+    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <a href="#home" class="flex items-center gap-3">
+        <img src="assets/sunwardsteps-logo.png" alt="Sunward Step Manchester logo" class="h-14 w-auto rounded-xl object-contain" />
+        <span class="hidden text-xl font-black tracking-tight text-slate-800 sm:block">Sunward Step</span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-center gap-2">
+          <a href="#walking-group" class="rounded-full px-4 py-2 text-sm font-bold text-slate-700 hover:bg-sky-50 hover:text-sky-700">Walking Group</a>
+          <a href="#community-event" class="rounded-full px-4 py-2 text-sm font-bold text-slate-700 hover:bg-orange-50 hover:text-orange-700">Free Event</a>
+          <a href="#contact" class="rounded-full bg-sky-600 px-5 py-2 text-sm font-black text-white shadow-sm hover:bg-sky-700">Contact</a>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="inline-flex items-center justify-center rounded-xl p-2 text-slate-700 hover:bg-orange-50 focus:outline-none md:hidden" aria-label="Open menu" aria-expanded="false">
+        <svg class="h-7 w-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden border-t border-orange-100 bg-white md:hidden">
+      <div class="space-y-1 px-4 py-4">
+        <a href="#walking-group" class="block rounded-xl px-4 py-3 font-bold text-slate-700 hover:bg-sky-50">Walking Group</a>
+        <a href="#community-event" class="block rounded-xl px-4 py-3 font-bold text-slate-700 hover:bg-orange-50">Free Event</a>
+        <a href="#contact" class="block rounded-xl px-4 py-3 font-bold text-slate-700 hover:bg-red-50">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="home">
+    <!-- Hero / Above the fold -->
+    <section id="walking-group" class="hero-pattern relative overflow-hidden">
+      <div class="absolute -left-20 top-20 h-64 w-64 rounded-full bg-orange-300/25 blur-3xl"></div>
+      <div class="absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-sky-400/20 blur-3xl"></div>
+
+      <div class="mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+        <div class="relative z-10">
+          <p class="mb-4 inline-flex rounded-full bg-orange-100 px-4 py-2 text-sm font-black uppercase tracking-wide text-orange-700 ring-1 ring-orange-200">
+            Every Thursday at 1 PM
+          </p>
+
+          <h1 class="max-w-3xl text-5xl font-black leading-[0.95] tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
+            Join our friendly
+            <span class="block text-green-700">walking group</span>
+          </h1>
+
+          <p class="mt-6 max-w-2xl text-xl font-semibold leading-8 text-slate-700">
+            A relaxed, welcoming group for friendly walks, conversation and connection in the community.
+          </p>
+
+          <div class="mt-8 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-3xl border border-sky-100 bg-white p-5 shadow-lg shadow-sky-900/5">
+              <p class="text-sm font-black uppercase tracking-wide text-sky-700">When</p>
+              <p class="mt-1 text-2xl font-black">Every Thursday</p>
+              <p class="text-lg font-bold text-slate-600">1:00 PM</p>
+            </div>
+
+            <div class="rounded-3xl border border-orange-100 bg-white p-5 shadow-lg shadow-orange-900/5">
+              <p class="text-sm font-black uppercase tracking-wide text-orange-700">Where</p>
+              <p class="mt-1 text-2xl font-black">74 Maitland Ave</p>
+              <p class="text-lg font-bold text-slate-600">Manchester M21 7WH</p>
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="#contact" class="inline-flex items-center justify-center rounded-2xl bg-sky-600 px-7 py-4 text-base font-black text-white shadow-lg shadow-sky-900/15 hover:bg-sky-700">
+              Get in touch
+            </a>
+            <a href="#community-event" class="inline-flex items-center justify-center rounded-2xl bg-orange-400 px-7 py-4 text-base font-black text-slate-900 shadow-lg shadow-orange-900/15 hover:bg-orange-300">
+              View free community event
+            </a>
+          </div>
+        </div>
+
+        <!-- Poster-style weekly card -->
+        <div class="relative z-10">
+          <div class="mx-auto max-w-md rotate-0 rounded-[2rem] border-4 border-white bg-gradient-to-b from-sky-100 via-white to-green-100 p-5 shadow-2xl shadow-slate-900/20 lg:rotate-1">
+            <div class="rounded-[1.5rem] border border-green-200 bg-white/80 p-6 text-center backdrop-blur">
+              <img src="assets/sunwardsteps-logo.png" alt="Sunward Step Manchester" class="mx-auto mb-5 h-24 w-auto rounded-2xl object-contain" />
+
+              <p class="text-2xl font-black text-slate-700">Join Our Friendly</p>
+              <p class="mt-1 text-4xl font-black uppercase leading-none tracking-tight text-green-700">Walking Group!</p>
+
+              <div class="mx-auto mt-5 inline-flex rounded-full bg-orange-200 px-5 py-2 text-lg font-black text-slate-800">
+                Every Thursday at 1 PM
+              </div>
+
+              <div class="mt-5 rounded-2xl bg-green-700 px-5 py-4 text-white">
+                <p class="text-sm font-black uppercase tracking-wide text-green-100">Meeting point</p>
+                <p class="mt-1 text-2xl font-black">Car Park at Entrance</p>
+                <p class="mt-2 text-sm font-semibold text-green-50">Find us in the car park at the entrance of Chorlton Water Park.</p>
+              </div>
+
+              <ul class="mt-5 space-y-2 text-left text-lg font-bold text-slate-700">
+                <li class="flex gap-3"><span aria-hidden="true">😊</span><span>A relaxed, welcoming group</span></li>
+                <li class="flex gap-3"><span aria-hidden="true">👟</span><span>All abilities welcome</span></li>
+                <li class="flex gap-3"><span aria-hidden="true">🤝</span><span>New members welcome</span></li>
+              </ul>
+
+              <p class="mt-5 rounded-2xl bg-orange-100 px-4 py-3 text-xl font-black text-orange-800">
+                Come along for a friendly walk!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About / who it is for -->
+    <section class="bg-white py-18 sm:py-24">
+      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+          <div>
+            <p class="text-sm font-black uppercase tracking-wide text-red-600">Community, support and connection</p>
+            <h2 class="mt-3 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">A safe and welcoming space</h2>
+            <p class="mt-5 text-lg leading-8 text-slate-600">
+              Sunward Step Manchester brings people together through gentle social activities, friendly conversation and community support.
+            </p>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-3">
+            <div class="rounded-3xl bg-sky-50 p-6 ring-1 ring-sky-100">
+              <p class="text-4xl" aria-hidden="true">🌤️</p>
+              <h3 class="mt-4 text-xl font-black">Fresh air</h3>
+              <p class="mt-2 text-slate-600">A simple weekly walk with a friendly group.</p>
+            </div>
+            <div class="rounded-3xl bg-orange-50 p-6 ring-1 ring-orange-100">
+              <p class="text-4xl" aria-hidden="true">💬</p>
+              <h3 class="mt-4 text-xl font-black">Conversation</h3>
+              <p class="mt-2 text-slate-600">A chance to chat, laugh and feel connected.</p>
+            </div>
+            <div class="rounded-3xl bg-red-50 p-6 ring-1 ring-red-100">
+              <p class="text-4xl" aria-hidden="true">🤲</p>
+              <h3 class="mt-4 text-xl font-black">Support</h3>
+              <p class="mt-2 text-slate-600">A welcoming space for anyone needing community.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Free Event -->
+    <section id="community-event" class="relative overflow-hidden bg-gradient-to-br from-yellow-300 via-orange-300 to-red-400 py-20">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.35),transparent_25rem)]"></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-4xl rounded-[2rem] border-4 border-white/80 bg-white/92 p-6 shadow-2xl shadow-red-900/20 sm:p-10">
+          <div class="text-center">
+            <p class="mx-auto mb-4 inline-flex rounded-full bg-sky-700 px-4 py-2 text-sm font-black uppercase tracking-wide text-white">
+              Our first free event
+            </p>
+            <h2 class="text-4xl font-black tracking-tight text-slate-900 sm:text-6xl">
+              Free warm food, music & community
+            </h2>
+            <p class="mx-auto mt-5 max-w-2xl text-lg font-semibold leading-8 text-slate-700">
+              Providing free warm food, refreshments, music, entertainment, dancing, friendly conversation, laughter and a raffle.
+            </p>
+          </div>
+
+          <div class="mt-8 grid gap-4 md:grid-cols-3">
+            <div class="rounded-3xl bg-slate-900 p-6 text-white">
+              <p class="text-sm font-black uppercase tracking-wide text-orange-200">Date</p>
+              <p class="mt-2 text-3xl font-black">25th May</p>
+            </div>
+            <div class="rounded-3xl bg-sky-700 p-6 text-white">
+              <p class="text-sm font-black uppercase tracking-wide text-sky-100">Time</p>
+              <p class="mt-2 text-3xl font-black">5:00 PM – 10:00 PM</p>
+            </div>
+            <div class="rounded-3xl bg-orange-100 p-6 text-slate-900">
+              <p class="text-sm font-black uppercase tracking-wide text-orange-700">Who for?</p>
+              <p class="mt-2 text-xl font-black">People aged 40+, carers and anyone experiencing loneliness or isolation.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 rounded-3xl border-2 border-dashed border-red-300 bg-yellow-50 p-6">
+            <p class="text-sm font-black uppercase tracking-wide text-red-600">Location</p>
+            <p class="mt-2 text-2xl font-black text-slate-900">West Indian Sports & Social Club</p>
+            <p class="text-lg font-bold text-slate-700">Westwood Street, Manchester M14 4SW</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="bg-slate-900 py-16 text-white">
+      <div class="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
+        <div>
+          <h2 class="text-4xl font-black tracking-tight">Want to come along?</h2>
+          <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
+            New members are welcome. Contact Sunward Step Manchester or find them on TikTok and Facebook.
+          </p>
+        </div>
+
+        <div class="rounded-3xl bg-white p-6 text-slate-900">
+          <h3 class="text-2xl font-black">Contact details</h3>
+          <div class="mt-5 space-y-4">
+            <a href="tel:+447344508361" class="flex items-center gap-3 rounded-2xl bg-sky-50 p-4 font-black text-sky-800 hover:bg-sky-100">
+              <span aria-hidden="true">📞</span>
+              <span>07344 508361</span>
+            </a>
+            <a href="mailto:Avendanoannica@gmail.com" class="flex items-center gap-3 rounded-2xl bg-orange-50 p-4 font-black text-orange-800 hover:bg-orange-100">
+              <span aria-hidden="true">✉️</span>
+              <span>Avendanoannica@gmail.com</span>
+            </a>
+            <p class="rounded-2xl bg-green-50 p-4 font-black text-green-800">
+              We’re on TikTok & Facebook
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 py-8 text-center text-sm font-semibold text-slate-400">
+    <p>&copy; 2026 Sunward Step Manchester. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', String(!isHidden));
+    });
+
+    document.querySelectorAll('#mobileMenu a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+</body>
+</html>
