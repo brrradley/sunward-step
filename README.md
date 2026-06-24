@@ -1,12 +1,12 @@
 # Sunward Step Manchester
 
-A warm, mobile-first community website for **Sunward Step Manchester** — a local walking group and social support project helping people connect through friendly walks, community events, food, music and conversation.
+A bright, welcoming community website for **Sunward Step Manchester** — a local walking group and social support project helping people connect through friendly walks, community events, food, music and conversation.
 
 The site is deliberately lightweight, fast and easy to maintain: a single static HTML page styled with Tailwind CSS via CDN, with no build step or framework dependency.
 
 ## Repository description
 
-**A mobile-first static website for Sunward Step Manchester, promoting community walks, free social events and local support for people experiencing loneliness or isolation.**
+**A bright community website for Sunward Step Manchester, sharing local walks, free social events and support for people experiencing loneliness or isolation.**
 
 ## Overview
 
@@ -16,7 +16,7 @@ The design uses bright, friendly colours, rounded cards, strong typography and s
 
 ## Key features
 
-- **Mobile-first responsive layout** for phones, tablets and desktop screens.
+- **Responsive layout** for phones, tablets and desktop screens.
 - **Sticky navigation bar** with desktop links and a collapsible mobile menu.
 - **Hero section** promoting the weekly walking group.
 - **Poster-style event card** for quick visual scanning of time, place and purpose.
