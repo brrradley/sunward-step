@@ -1,6 +1,6 @@
 # Sunward Step Manchester
 
-A bright, welcoming community website for **Sunward Step Manchester** — a local walking group and social support project helping people connect through friendly walks, community events, food, music and conversation.
+A bright, welcoming community website for **Sunward Step Manchester** — a local weekly walking group and social support project helping people connect through friendly walks, community events, food, music and conversation.
 
 The site is deliberately lightweight, fast and easy to maintain: a single static HTML page styled with Tailwind CSS via CDN, with no build step or framework dependency.
 
