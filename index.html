@@ -20,6 +20,14 @@
         radial-gradient(circle at 82% 26%, rgba(255,255,255,0.55) 0 1px, transparent 1px);
       background-size: 42px 42px, 58px 58px;
     }
+
+    /* Gallery specific styles */
+    .gallery-thumb { @apply cursor-pointer overflow-hidden rounded-xl border ring-1 ring-slate-100; }
+    .gallery-thumb img { @apply w-full h-full object-cover transition-transform duration-300 ease-in-out; }
+    .gallery-thumb:hover img { transform: scale(1.06); }
+
+    /* Modal image transition */
+    .modal-image { transition: opacity 200ms ease; }
   </style>
 </head>
 <body class="text-slate-900 antialiased">
@@ -97,7 +105,7 @@
             <a href="#contact" class="inline-flex items-center justify-center rounded-2xl bg-sky-600 px-7 py-4 text-base font-black text-white shadow-lg shadow-sky-900/15 hover:bg-sky-700">
               Get in touch
             </a>
-            <a href="#community-event" class="hidden items-center justify-center rounded-2xl bg-orange-400 px-7 py-4 text-base font-black text-slate-900 shadow-lg shadow-orange-900/15 hover:bg-orange-500">
+            <a href="#community-event" class="hidden items-center justify-center rounded-2xl bg-orange-400 px-7 py-4 text-base font-black text-slate-900 shadow-lg shadow-orange-900/15 hover:bg-or[...]
               View free community event
             </a>
           </div>
@@ -201,6 +209,58 @@
       </div>
     </section>
 
+    <!-- Image Gallery -->
+    <section id="gallery" class="bg-slate-50 py-16">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-8 text-center">
+          <h2 class="text-3xl font-black text-slate-900">Gallery</h2>
+          <p class="mt-2 text-slate-600">Click a thumbnail to view full-size. Use the arrows to navigate.</p>
+        </div>
+
+        <!-- Thumbnails grid -->
+        <div id="galleryThumbs" class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+          <!-- Replace these image paths with your real images in the assets/ directory -->
+          <button class="gallery-thumb" data-index="0" data-full="assets/gallery1.jpg" aria-label="Open image 1">
+            <img src="assets/gallery1-thumb.jpg" alt="Gallery image 1 thumbnail" loading="lazy">
+          </button>
+          <button class="gallery-thumb" data-index="1" data-full="assets/gallery2.jpg" aria-label="Open image 2">
+            <img src="assets/gallery2-thumb.jpg" alt="Gallery image 2 thumbnail" loading="lazy">
+          </button>
+          <button class="gallery-thumb" data-index="2" data-full="assets/gallery3.jpg" aria-label="Open image 3">
+            <img src="assets/gallery3-thumb.jpg" alt="Gallery image 3 thumbnail" loading="lazy">
+          </button>
+          <button class="gallery-thumb" data-index="3" data-full="assets/gallery4.jpg" aria-label="Open image 4">
+            <img src="assets/gallery4-thumb.jpg" alt="Gallery image 4 thumbnail" loading="lazy">
+          </button>
+          <button class="gallery-thumb" data-index="4" data-full="assets/gallery5.jpg" aria-label="Open image 5">
+            <img src="assets/gallery5-thumb.jpg" alt="Gallery image 5 thumbnail" loading="lazy">
+          </button>
+          <button class="gallery-thumb" data-index="5" data-full="assets/gallery6.jpg" aria-label="Open image 6">
+            <img src="assets/gallery6-thumb.jpg" alt="Gallery image 6 thumbnail" loading="lazy">
+          </button>
+        </div>
+
+        <!-- Modal / Fullscreen viewer -->
+        <div id="galleryModal" class="hidden fixed inset-0 z-50 items-center justify-center bg-black/80 p-4">
+          <div class="relative mx-auto max-w-[95vw] max-h-[95vh] w-full">
+            <button id="galleryClose" class="absolute right-2 top-2 z-50 rounded-full bg-white/20 p-2 text-white backdrop-blur hover:bg-white/30" aria-label="Close gallery">✕</button>
+
+            <img id="galleryModalImage" class="modal-image mx-auto max-w-full max-h-[85vh] rounded-md object-contain" src="" alt="Full size gallery image">
+
+            <!-- Prev / Next buttons -->
+            <button id="galleryPrev" class="absolute left-2 top-1/2 -translate-y-1/2 z-50 hidden h-12 w-12 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur hover:bg-white/30 md:flex" aria-label="Previous image">◀</button>
+            <button id="galleryNext" class="absolute right-2 top-1/2 -translate-y-1/2 z-50 hidden h-12 w-12 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur hover:bg-white/30 md:flex" aria-label="Next image">▶</button>
+
+            <!-- Mobile controls (visible on small screens) -->
+            <div class="mt-3 flex items-center justify-between md:hidden">
+              <button id="galleryPrevMobile" class="rounded-xl bg-white/10 px-4 py-2 text-white">Prev</button>
+              <button id="galleryNextMobile" class="rounded-xl bg-white/10 px-4 py-2 text-white">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Free Event (temporarily hidden until the next event is announced) -->
     <section id="community-event" class="hidden relative overflow-hidden bg-gradient-to-br from-yellow-300 via-orange-300 to-red-400 py-20">
       <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.35),transparent_25rem)]"></div>
@@ -249,7 +309,7 @@
         <div>
           <h2 class="text-4xl font-black tracking-tight">Want to come along?</h2>
           <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
-            New members are always welcome! Contact Sunward Step Manchester or find us on <a href="https://www.tiktok.com/@sunwardstepmanchester" target="_blank" rel="noopener noreferrer" class="text-black-300 hover:text-black-300 underline">TikTok</a> and <a href="https://www.facebook.com/profile.php?id=61584350194642" target="_blank" rel="noopener noreferrer" class="text-black-300 hover:text-black-300 underline">Facebook</a>.
+            New members are always welcome! Contact Sunward Step Manchester or find us on <a href="https://www.tiktok.com/@sunwardstepmanchester" target="_blank" rel="noopener noreferrer" class="[...]
           </p>
         </div>
 
@@ -298,6 +358,85 @@
         mobileMenuBtn.setAttribute('aria-expanded', 'false');
       });
     });
+
+    // Gallery script
+    (function() {
+      const thumbs = Array.from(document.querySelectorAll('.gallery-thumb'));
+      const modal = document.getElementById('galleryModal');
+      const modalImage = document.getElementById('galleryModalImage');
+      const closeBtn = document.getElementById('galleryClose');
+      const prevBtn = document.getElementById('galleryPrev');
+      const nextBtn = document.getElementById('galleryNext');
+      const prevMobile = document.getElementById('galleryPrevMobile');
+      const nextMobile = document.getElementById('galleryNextMobile');
+
+      if (!thumbs.length || !modal) return; // nothing to do
+
+      // Build an array of full-size image urls from data-full attributes
+      const images = thumbs.map(t => t.getAttribute('data-full'));
+      const alts = thumbs.map(t => t.querySelector('img')?.alt || 'Gallery image');
+      let current = 0;
+
+      function open(index) {
+        current = (index + images.length) % images.length;
+        modalImage.style.opacity = 0;
+        modalImage.src = images[current];
+        modalImage.alt = alts[current];
+        modal.classList.remove('hidden');
+        // small timeout to allow image load; fade in
+        setTimeout(() => { modalImage.style.opacity = 1; }, 30);
+        // show desktop arrows if wide enough
+        if (window.innerWidth >= 768) {
+          prevBtn.classList.remove('hidden');
+          nextBtn.classList.remove('hidden');
+        }
+        // trap focus on close button
+        closeBtn.focus();
+      }
+
+      function close() {
+        modal.classList.add('hidden');
+        modalImage.src = '';
+      }
+
+      function showNext() { open(current + 1); }
+      function showPrev() { open(current - 1); }
+
+      thumbs.forEach(t => t.addEventListener('click', (e) => {
+        const i = parseInt(t.getAttribute('data-index') || '0', 10);
+        open(i);
+      }));
+
+      closeBtn.addEventListener('click', close);
+      prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+      nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+      prevMobile && prevMobile.addEventListener('click', showPrev);
+      nextMobile && nextMobile.addEventListener('click', showNext);
+
+      // Close when clicking outside the image
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) close();
+      });
+
+      // Keyboard support
+      document.addEventListener('keydown', (e) => {
+        if (modal.classList.contains('hidden')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowRight') showNext();
+        if (e.key === 'ArrowLeft') showPrev();
+      });
+
+      // Preload neighbours for smoother navigation
+      function preload(index) {
+        const url = images[(index + images.length) % images.length];
+        const img = new Image(); img.src = url;
+      }
+
+      // Update preload whenever image changes
+      const observer = new MutationObserver(() => { preload(current+1); preload(current-1); });
+      observer.observe(modalImage, { attributes: true, attributeFilter: ['src'] });
+
+    })();
   </script>
 </body>
 </html>
