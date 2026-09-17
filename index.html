@@ -252,7 +252,174 @@
         </div>
       </div>
     </section>
+<!-- Sunward Step responsive photo gallery: paste this block into your existing HTML page. -->
+<section class="ss-photo-gallery" aria-label="Sunward Step photo gallery">
+  <div class="ss-gallery-grid">
+    <button class="ss-thumb" type="button" data-full="assets/IMG_1698.jpg" aria-label="Open photo 1"><img src="assets/IMG_1698-thumb.jpg" alt="Sunward Step walking group photo 1" loading="lazy"></button>
+    <button class="ss-thumb" type="button" data-full="assets/IMG_1705.jpg" aria-label="Open photo 2"><img src="assets/IMG_1705-thumb.jpg" alt="Sunward Step walking group photo 2" loading="lazy"></button>
+    <button class="ss-thumb" type="button" data-full="assets/IMG_1703.jpg" aria-label="Open photo 3"><img src="assets/IMG_1703-thumb.jpg" alt="Sunward Step walking group photo 3" loading="lazy"></button>
+    <button class="ss-thumb" type="button" data-full="assets/IMG_1710.jpg" aria-label="Open photo 4"><img src="assets/IMG_1710-thumb.jpg" alt="Sunward Step walking group photo 4" loading="lazy"></button>
+    <button class="ss-thumb" type="button" data-full="assets/IMG_1698-2.jpg" aria-label="Open photo 5"><img src="assets/IMG_1698-2-thumb.jpg" alt="Sunward Step walking group photo 5" loading="lazy"></button>
+    <button class="ss-thumb" type="button" data-full="assets/IMG_1709.jpg" aria-label="Open photo 6"><img src="assets/IMG_1709-thumb.jpg" alt="Sunward Step walking group photo 6" loading="lazy"></button>
+    <button class="ss-thumb" type="button" data-full="assets/IMG_1707.jpg" aria-label="Open photo 7"><img src="assets/IMG_1707-thumb.jpg" alt="Sunward Step walking group photo 7" loading="lazy"></button>
+  </div>
 
+  <div class="ss-lightbox" id="ssLightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+    <button class="ss-close" type="button" aria-label="Close photo viewer">&times;</button>
+    <button class="ss-nav ss-prev" type="button" aria-label="Previous photo">&#10094;</button>
+    <figure>
+      <img class="ss-full-image" alt="">
+      <figcaption class="ss-counter" aria-live="polite"></figcaption>
+    </figure>
+    <button class="ss-nav ss-next" type="button" aria-label="Next photo">&#10095;</button>
+  </div>
+</section>
+
+<style>
+.ss-gallery-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+  gap:12px;
+}
+.ss-thumb {
+  display:block;
+  width:100%;
+  padding:0;
+  border:0;
+  background:none;
+  cursor:pointer;
+}
+.ss-thumb img {
+  display:block;
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  border-radius:8px;
+}
+.ss-lightbox[hidden] { display:none; }
+.ss-lightbox {
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.94);
+  overscroll-behavior:contain;
+}
+.ss-lightbox figure {
+  margin:0;
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.ss-full-image {
+  display:block;
+  max-width:100vw;
+  max-height:100dvh;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+.ss-close,.ss-nav {
+  position:absolute;
+  z-index:2;
+  border:0;
+  color:#fff;
+  background:rgba(0,0,0,.38);
+  cursor:pointer;
+  touch-action:manipulation;
+}
+.ss-close {
+  top:max(12px,env(safe-area-inset-top));
+  right:max(12px,env(safe-area-inset-right));
+  width:48px;height:48px;
+  border-radius:50%;
+  font-size:36px;line-height:1;
+}
+.ss-nav {
+  top:50%;
+  transform:translateY(-50%);
+  width:52px;height:72px;
+  border-radius:8px;
+  font-size:38px;
+}
+.ss-prev { left:max(8px,env(safe-area-inset-left)); }
+.ss-next { right:max(8px,env(safe-area-inset-right)); }
+.ss-counter {
+  position:absolute;
+  bottom:max(12px,env(safe-area-inset-bottom));
+  left:50%;
+  transform:translateX(-50%);
+  color:#fff;
+  background:rgba(0,0,0,.45);
+  padding:6px 10px;
+  border-radius:999px;
+  font:14px/1.2 system-ui,sans-serif;
+}
+@media (max-width:600px) {
+  .ss-gallery-grid { grid-template-columns:repeat(3,1fr); gap:6px; }
+  .ss-nav { width:44px;height:60px;font-size:30px; }
+}
+</style>
+
+<script>
+(() => {
+  const gallery = document.querySelector('.ss-photo-gallery');
+  if (!gallery) return;
+
+  const thumbs = [...gallery.querySelectorAll('.ss-thumb')];
+  const box = gallery.querySelector('.ss-lightbox');
+  const full = gallery.querySelector('.ss-full-image');
+  const counter = gallery.querySelector('.ss-counter');
+  let index = 0;
+  let touchStartX = 0;
+
+  function show(i) {
+    index = (i + thumbs.length) % thumbs.length;
+    const b = thumbs[index];
+    full.src = b.dataset.full;
+    full.alt = b.querySelector('img').alt;
+    counter.textContent = `${index + 1} / ${thumbs.length}`;
+  }
+  function openAt(i) {
+    show(i);
+    box.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    gallery.querySelector('.ss-close').focus();
+  }
+  function close() {
+    box.hidden = true;
+    full.removeAttribute('src');
+    document.documentElement.style.overflow = '';
+    thumbs[index].focus();
+  }
+
+  thumbs.forEach((b,i) => b.addEventListener('click', () => openAt(i)));
+  gallery.querySelector('.ss-prev').addEventListener('click', () => show(index - 1));
+  gallery.querySelector('.ss-next').addEventListener('click', () => show(index + 1));
+  gallery.querySelector('.ss-close').addEventListener('click', close);
+
+  box.addEventListener('click', e => { if (e.target === box || e.target.tagName === 'FIGURE') close(); });
+  box.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; }, {passive:true});
+  box.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 45) show(index + (dx < 0 ? 1 : -1));
+  }, {passive:true});
+
+  document.addEventListener('keydown', e => {
+    if (box.hidden) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(index - 1);
+    if (e.key === 'ArrowRight') show(index + 1);
+  });
+})();
+</script>
+
+
+    
     <!-- Image Gallery -->
     <section id="gallery" class="bg-slate-50 py-16">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
