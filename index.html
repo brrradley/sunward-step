@@ -2,17 +2,14 @@
 <html lang="en">
 <head>
   <link rel="icon" href="assets/favicon.ico">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Sunward Step Manchester - a friendly weekly walking group for 40+ with community events for connection, support and wellbeing." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sunward Step Manchester - a friendly weekly walking group for 40+ with community events for connection, support and wellbeing.">
   <title>Sunward Step Manchester</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html { scroll-behavior: smooth; }
-    body {
-      background: radial-gradient(circle at top left, rgba(255,198,69,.22), transparent 32rem),
-                  radial-gradient(circle at top right, rgba(0,151,207,.18), transparent 30rem), #fff9e8;
-    }
+    body { background: radial-gradient(circle at top left, rgba(255,198,69,.22), transparent 32rem), radial-gradient(circle at top right, rgba(0,151,207,.18), transparent 30rem), #fff9e8; }
     .hero-pattern { background-image: radial-gradient(circle at 12% 20%, rgba(255,255,255,.75) 0 1px, transparent 1px), radial-gradient(circle at 82% 26%, rgba(255,255,255,.55) 0 1px, transparent 1px); background-size: 42px 42px, 58px 58px; }
     .ss-photo-gallery { margin: 0 auto 80px; padding: 0 20px; }
     .ss-gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 160px)); justify-content: center; gap: 12px; max-width: 1200px; margin: 0 auto; }
@@ -22,12 +19,13 @@
     .ss-lightbox[hidden] { display: none; }
     .ss-lightbox { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(15,23,42,.92); }
     .ss-lightbox figure { display: flex; max-width: min(1100px, 90vw); max-height: 90vh; margin: 0; flex-direction: column; align-items: center; }
-    .ss-full-image { display: block; max-width: 100%; max-height: 82vh; width: auto; height: auto; object-fit: contain; border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+    .ss-full-image { display: block; max-width: 100%; max-height: 82vh; width: auto; height: auto; object-fit: contain; border-radius: 10px; }
     .ss-close, .ss-nav { position: absolute; z-index: 1; border: 0; color: white; background: rgba(255,255,255,.14); cursor: pointer; }
     .ss-close { top: 18px; right: 24px; width: 44px; height: 44px; border-radius: 50%; font-size: 32px; line-height: 1; }
     .ss-nav { top: 50%; width: 48px; height: 48px; border-radius: 50%; transform: translateY(-50%); font-size: 28px; }
     .ss-prev { left: 20px; } .ss-next { right: 20px; }
     .ss-counter { margin-top: 10px; color: white; font-weight: 700; }
+    #contact { display: block; visibility: visible; position: relative; z-index: 1; }
     @media (max-width: 600px) { .ss-photo-gallery { margin-bottom: 50px; padding: 0 10px; } .ss-gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; } .ss-nav { width: 40px; height: 40px; } .ss-prev { left: 8px; } .ss-next { right: 8px; } }
   </style>
 </head>
@@ -51,27 +49,20 @@
       <button class="ss-thumb" type="button" data-full="assets/IMG_1698-2.jpg" aria-label="Open photo 5"><img src="assets/IMG_1698-2-thumb.jpg" alt="Sunward Step walking group photo 5" loading="lazy"></button>
       <button class="ss-thumb" type="button" data-full="assets/IMG_1709.jpg" aria-label="Open photo 6"><img src="assets/IMG_1709-thumb.jpg" alt="Sunward Step walking group photo 6" loading="lazy"></button>
       <button class="ss-thumb" type="button" data-full="assets/IMG_1707.jpg" aria-label="Open photo 7"><img src="assets/IMG_1707-thumb.jpg" alt="Sunward Step walking group photo 7" loading="lazy"></button>
-    </div><div class="ss-lightbox" id="ssLightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden><button class="ss-close" type="button" aria-label="Close photo viewer">&times;</button><button class="ss-nav ss-prev" type="button" aria-label="Previous photo">&#10094;</button><figure><img class="ss-full-image" alt=""><figcaption class="ss-counter" aria-live="polite"></figcaption></figure><button class="ss-nav ss-next" type="button" aria-label="Next photo">&#10095;</button></div></section>
-    <section id="contact" class="bg-slate-900 py-16 text-white"><div class="mx-auto max-w-7xl px-4 sm:px-6"><h2 class="text-4xl font-black">Want to come along?</h2><p class="mt-4 text-lg text-slate-300">New members are always welcome! Contact Sunward Step Manchester.</p><div class="mt-6 rounded-3xl bg-white p-6 text-slate-900"><a href="tel:+447344508361" class="font-black text-sky-800">📞 07344 508361</a><br><a href="mailto:email@sunwardstep.com" class="font-black text-orange-800">✉️ email@sunwardstep.com</a></div></div></section>
-  </main><footer class="bg-slate-950 py-8 text-center text-sm font-semibold text-slate-400">&copy; 2026 Sunward Step Manchester. All rights reserved.</footer>
+    </div>
+      <div class="ss-lightbox" id="ssLightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden><button class="ss-close" type="button" aria-label="Close photo viewer">&times;</button><button class="ss-nav ss-prev" type="button" aria-label="Previous photo">&#10094;</button><figure><img class="ss-full-image" alt=""><figcaption class="ss-counter" aria-live="polite"></figcaption></figure><button class="ss-nav ss-next" type="button" aria-label="Next photo">&#10095;</button></div>
+    </section>
+    <section id="contact" class="bg-slate-900 py-16 text-white"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><h2 class="text-4xl font-black tracking-tight">Want to come along?</h2><p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">New members are always welcome! Get in touch with Sunward Step Manchester.</p><div class="mt-8 grid gap-4 sm:grid-cols-3"><a href="tel:+447344508361" class="rounded-2xl bg-sky-50 p-5 font-black text-sky-800 hover:bg-sky-100">📞 <span>07344 508361</span></a><a href="mailto:email@sunwardstep.com" class="rounded-2xl bg-orange-50 p-5 font-black text-orange-800 hover:bg-orange-100">✉️ <span>email@sunwardstep.com</span></a><div class="rounded-2xl bg-green-50 p-5 font-black text-green-800">📱 <a href="https://www.tiktok.com/@sunwardstepmanchester" target="_blank" rel="noopener noreferrer" class="underline">TikTok</a> <span>&amp;</span> <a href="https://www.facebook.com/profile.php?id=61584350194642" target="_blank" rel="noopener noreferrer" class="underline">Facebook</a></div></div></div></section>
+  </main>
+  <footer class="bg-slate-950 py-8 text-center text-sm font-semibold text-slate-400">&copy; 2026 Sunward Step Manchester. All rights reserved.</footer>
   <script>
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn'), mobileMenu = document.getElementById('mobileMenu');
     mobileMenuBtn.addEventListener('click', () => { const hidden = mobileMenu.classList.toggle('hidden'); mobileMenuBtn.setAttribute('aria-expanded', String(!hidden)); });
-    const thumbs = [...document.querySelectorAll('.ss-thumb')];
-    const lightbox = document.getElementById('ssLightbox');
-    const fullImage = lightbox.querySelector('.ss-full-image');
-    const counter = lightbox.querySelector('.ss-counter');
-    const close = lightbox.querySelector('.ss-close');
-    let current = 0;
-    const images = thumbs.map((thumb) => ({ src: thumb.dataset.full, alt: thumb.querySelector('img').alt }));
+    const thumbs = [...document.querySelectorAll('.ss-thumb')], lightbox = document.getElementById('ssLightbox'), fullImage = lightbox.querySelector('.ss-full-image'), counter = lightbox.querySelector('.ss-counter'), close = lightbox.querySelector('.ss-close');
+    let current = 0; const images = thumbs.map((thumb) => ({ src: thumb.dataset.full, alt: thumb.querySelector('img').alt }));
     function show(index) { current = (index + images.length) % images.length; fullImage.src = images[current].src; fullImage.alt = images[current].alt; counter.textContent = `${current + 1} of ${images.length}`; lightbox.hidden = false; close.focus(); }
     function hide() { lightbox.hidden = true; fullImage.removeAttribute('src'); }
-    thumbs.forEach((thumb, index) => thumb.addEventListener('click', () => show(index)));
-    close.addEventListener('click', hide);
-    lightbox.querySelector('.ss-prev').addEventListener('click', () => show(current - 1));
-    lightbox.querySelector('.ss-next').addEventListener('click', () => show(current + 1));
-    lightbox.addEventListener('click', (event) => { if (event.target === lightbox) hide(); });
+    thumbs.forEach((thumb, index) => thumb.addEventListener('click', () => show(index))); close.addEventListener('click', hide); lightbox.querySelector('.ss-prev').addEventListener('click', () => show(current - 1)); lightbox.querySelector('.ss-next').addEventListener('click', () => show(current + 1)); lightbox.addEventListener('click', (event) => { if (event.target === lightbox) hide(); });
     document.addEventListener('keydown', (event) => { if (lightbox.hidden) return; if (event.key === 'Escape') hide(); if (event.key === 'ArrowLeft') show(current - 1); if (event.key === 'ArrowRight') show(current + 1); });
   </script>
 </body>
