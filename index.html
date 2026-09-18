@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" href="assets/favicon.ico"
+  <link rel="icon" href="assets/favicon.ico">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Sunward Step Manchester - a friendly weekly walking group for 40+ with community events for connection, support and wellbeing." />
@@ -10,623 +10,69 @@
   <style>
     html { scroll-behavior: smooth; }
     body {
-      background:
-        radial-gradient(circle at top left, rgba(255, 198, 69, 0.22), transparent 32rem),
-        radial-gradient(circle at top right, rgba(0, 151, 207, 0.18), transparent 30rem),
-        #fff9e8;
+      background: radial-gradient(circle at top left, rgba(255,198,69,.22), transparent 32rem),
+                  radial-gradient(circle at top right, rgba(0,151,207,.18), transparent 30rem), #fff9e8;
     }
-    .hero-pattern {
-      background-image:
-        radial-gradient(circle at 12% 20%, rgba(255,255,255,0.75) 0 1px, transparent 1px),
-        radial-gradient(circle at 82% 26%, rgba(255,255,255,0.55) 0 1px, transparent 1px);
-      background-size: 42px 42px, 58px 58px;
-    }
-
-    /* Gallery specific styles */
-    .gallery-thumb { @apply cursor-pointer overflow-hidden rounded-xl border ring-1 ring-slate-100; }
-    .gallery-thumb img { @apply w-full h-full object-cover transition-transform duration-300 ease-in-out; }
-    .gallery-thumb:hover img { transform: scale(1.06); }
-
-    /* Modal image transition */
-    .modal-image { transition: opacity 200ms ease; }
+    .hero-pattern { background-image: radial-gradient(circle at 12% 20%, rgba(255,255,255,.75) 0 1px, transparent 1px), radial-gradient(circle at 82% 26%, rgba(255,255,255,.55) 0 1px, transparent 1px); background-size: 42px 42px, 58px 58px; }
+    .ss-photo-gallery { margin: 0 auto 80px; padding: 0 20px; }
+    .ss-gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 160px)); justify-content: center; gap: 12px; max-width: 1200px; margin: 0 auto; }
+    .ss-thumb { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
+    .ss-thumb img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; transition: transform .2s ease; }
+    .ss-thumb:hover img, .ss-thumb:focus-visible img { transform: scale(1.04); }
+    .ss-lightbox[hidden] { display: none; }
+    .ss-lightbox { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(15,23,42,.92); }
+    .ss-lightbox figure { display: flex; max-width: min(1100px, 90vw); max-height: 90vh; margin: 0; flex-direction: column; align-items: center; }
+    .ss-full-image { display: block; max-width: 100%; max-height: 82vh; width: auto; height: auto; object-fit: contain; border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+    .ss-close, .ss-nav { position: absolute; z-index: 1; border: 0; color: white; background: rgba(255,255,255,.14); cursor: pointer; }
+    .ss-close { top: 18px; right: 24px; width: 44px; height: 44px; border-radius: 50%; font-size: 32px; line-height: 1; }
+    .ss-nav { top: 50%; width: 48px; height: 48px; border-radius: 50%; transform: translateY(-50%); font-size: 28px; }
+    .ss-prev { left: 20px; } .ss-next { right: 20px; }
+    .ss-counter { margin-top: 10px; color: white; font-weight: 700; }
+    @media (max-width: 600px) { .ss-photo-gallery { margin-bottom: 50px; padding: 0 10px; } .ss-gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; } .ss-nav { width: 40px; height: 40px; } .ss-prev { left: 8px; } .ss-next { right: 8px; } }
   </style>
 </head>
 <body class="text-slate-900 antialiased">
-  <!-- Navbar -->
   <nav class="sticky top-0 z-50 border-b border-orange-200/70 bg-white/90 shadow-sm backdrop-blur">
     <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-      <a href="#home" class="flex items-center gap-3">
-        <img src="assets/sunwardsteps-logo.png" alt="Sunward Step Manchester logo" class="h-14 w-auto rounded-xl object-contain" />
-        <span class="hidden text-xl font-black tracking-tight text-slate-800 sm:block">Sunward Step</span>
-      </a>
-
-      <!-- Desktop Menu -->
-      <div class="hidden md:block">
-        <div class="ml-10 flex items-center gap-2">
-          <a href="#walking-group" class="rounded-full px-4 py-2 text-sm font-bold text-slate-700 hover:bg-sky-50 hover:text-sky-700">Walking Group</a>
-          <a href="#community-event" class="hidden rounded-full px-4 py-2 text-sm font-bold text-slate-700 hover:bg-orange-50 hover:text-orange-700">Free Event</a>
-          <a href="#contact" class="rounded-full bg-sky-600 px-5 py-2 text-sm font-black text-white shadow-sm hover:bg-sky-700">Contact</a>
-        </div>
-      </div>
-
-      <!-- Mobile Menu Button -->
-      <button id="mobileMenuBtn" class="inline-flex items-center md:hidden">
-        <svg class="h-7 w-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+      <a href="#home" class="flex items-center gap-3"><img src="assets/sunwardsteps-logo.png" alt="Sunward Step Manchester logo" class="h-14 w-auto rounded-xl object-contain"><span class="hidden text-xl font-black tracking-tight text-slate-800 sm:block">Sunward Step</span></a>
+      <div class="hidden md:block"><div class="ml-10 flex items-center gap-2"><a href="#walking-group" class="rounded-full px-4 py-2 text-sm font-bold text-slate-700 hover:bg-sky-50">Walking Group</a><a href="#contact" class="rounded-full bg-sky-600 px-5 py-2 text-sm font-black text-white hover:bg-sky-700">Contact</a></div></div>
+      <button id="mobileMenuBtn" class="inline-flex items-center md:hidden" aria-expanded="false" aria-controls="mobileMenu"><svg class="h-7 w-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" /></svg></button>
     </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden border-t border-orange-100 bg-white md:hidden">
-      <div class="space-y-1 px-4 py-4">
-        <a href="#walking-group" class="block rounded-xl px-4 py-3 font-bold text-slate-700 hover:bg-sky-50">Walking Group</a>
-        <a href="#community-event" class="hidden rounded-xl px-4 py-3 font-bold text-slate-700 hover:bg-orange-50">Free Event</a>
-        <a href="#contact" class="block rounded-xl px-4 py-3 font-bold text-slate-700 hover:bg-red-50">Contact</a>
-      </div>
-    </div>
+    <div id="mobileMenu" class="hidden border-t border-orange-100 bg-white md:hidden"><div class="space-y-1 px-4 py-4"><a href="#walking-group" class="block rounded-xl px-4 py-3 font-bold">Walking Group</a><a href="#contact" class="block rounded-xl px-4 py-3 font-bold">Contact</a></div></div>
   </nav>
-
   <main id="home">
-    <!-- Hero / Above the fold -->
-    <section id="walking-group" class="hero-pattern relative overflow-hidden">
-      <div class="absolute -left-20 top-20 h-64 w-64 rounded-full bg-orange-300/25 blur-3xl"></div>
-      <div class="absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-sky-400/20 blur-3xl"></div>
-
-      <div class="mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
-        <div class="relative z-10">
-          <p class="mb-4 inline-flex rounded-full bg-orange-100 px-4 py-2 text-sm font-black uppercase tracking-wide text-orange-700 ring-1 ring-orange-200">
-             Wednesdays & Thursdays at 1:00 PM
-          </p>
-
-          <h1 class="max-w-3xl text-5xl font-black leading-[0.95] tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
-            Join our friendly
-            <span class="block text-green-700">walking groups</span>
-          </h1>
-
-          <p class="mt-6 max-w-2xl text-xl font-semibold leading-8 text-slate-700">
-            A relaxed, welcoming group for friendly walks, conversation and connection in the community.
-          </p>
-
-          <div class="mt-8 grid gap-4 sm:grid-cols-2">
-            <div class="rounded-6xl border border-sky-100 bg-white p-5 shadow-lg shadow-sky-900/5">
-              <p class="text-sm font-black uppercase tracking-wide text-sky-700">When</p>
-              <p class="mt-1 text-2xl font-black"></p>
-              <p class="text-lg font-bold text-slate-600">1:00 PM (Wed & Thu)</p>
-            </div>
-
-            <div class="rounded-6xl border border-orange-100 bg-white p-5 shadow-lg shadow-orange-900/5">
-              <p class="text-sm font-black uppercase tracking-wide text-orange-700">Where</p>
-              <p class="mt-1 text-2xl font-black">Two locations</p>
-              <p class="text-lg font-bold text-slate-600">See cards below for details</p>
-            </div>
-          </div>
-
-          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a href="#contact" class="inline-flex items-center justify-center rounded-2xl bg-sky-600 px-7 py-4 text-base font-black text-white shadow-lg shadow-sky-900/15 hover:bg-sky-700">
-              Get in touch
-            </a>
-            <a href="#community-event" class="hidden items-center justify-center rounded-2xl bg-orange-400 px-7 py-4 text-base font-black text-slate-900 shadow-lg shadow-orange-900/15 hover:bg-orange-500">
-              View free community event
-            </a>
-          </div>
-        </div>
-
-        <!-- Two walking group cards side by side on desktop, stacked on mobile -->
-        <div class="grid gap-6 grid-cols-1 lg:grid-cols-2">
-          <!-- Wednesday 1pm Card -->
-          <div class="relative z-10">
-            <div class="mx-auto max-w-md rounded-[2rem] border-4 border-white bg-gradient-to-b from-sky-100 via-white to-green-100 p-5 shadow-2xl shadow-slate-900/20">
-              <div class="rounded-[1.5rem] border border-green-200 bg-white/80 p-6 text-center backdrop-blur">
-                <img src="assets/sunwardsteps-logo.png" alt="Sunward Step Manchester" class="mx-auto mb-5 h-24 w-auto rounded-2xl object-contain" />
-
-                <p class="text-2xl font-black text-slate-700"></p>
-                <p class="mt-1 text-4xl font-black uppercase leading-none tracking-tight text-green-700"></p>
-
-                <div class="mx-auto mt-5 inline-flex rounded-full bg-orange-200 px-5 py-2 text-lg font-black text-slate-800">
-                  Every Wednesday at 1:00 PM
-                </div>
-
-                <div class="mt-5 rounded-2xl bg-green-700 px-5 py-4 text-white">
-                  <p class="text-sm font-black uppercase tracking-wide text-green-100">Meeting point</p>
-                  <p class="mt-1 text-2xl font-black">Alexandra Park</p>
-                  <p class="mt-2 text-sm font-semibold text-green-50">Corner of Claremont Rd & Alexandra Rd South, Manchester M16 8NX</p>
-                </div>
-
-                <ul class="mt-5 space-y-2 text-left text-lg font-bold text-slate-700">
-                  <li class="flex gap-3"><span aria-hidden="true">😊</span><span>A relaxed, welcoming group</span></li>
-                  <li class="flex gap-3"><span aria-hidden="true">👟</span><span>All abilities welcome</span></li>
-                  <li class="flex gap-3"><span aria-hidden="true">🤝</span><span>New members welcome</span></li>
-                </ul>
-
-                <p class="mt-5 rounded-2xl bg-orange-100 px-4 py-3 text-xl font-black text-orange-800">
-                  Come along for a friendly walk!
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Thursday 1pm Card -->
-          <div class="relative z-10">
-            <div class="mx-auto max-w-md rounded-[2rem] border-4 border-white bg-gradient-to-b from-sky-100 via-white to-green-100 p-5 shadow-2xl shadow-slate-900/20">
-              <div class="rounded-[1.5rem] border border-green-200 bg-white/80 p-6 text-center backdrop-blur">
-                <img src="assets/sunwardsteps-logo.png" alt="Sunward Step Manchester" class="mx-auto mb-5 h-24 w-auto rounded-2xl object-contain" />
-
-                <p class="text-2xl font-black text-slate-700"></p>
-                <p class="mt-1 text-4xl font-black uppercase leading-none tracking-tight text-green-700"></p>
-
-                <div class="mx-auto mt-5 inline-flex rounded-full bg-orange-200 px-5 py-2 text-lg font-black text-slate-800">
-                  Every Thursday at 1:00 PM
-                </div>
-
-                <div class="mt-5 rounded-2xl bg-green-700 px-5 py-4 text-white">
-                  <p class="text-sm font-black uppercase tracking-wide text-green-100">Meeting point</p>
-                  <p class="mt-1 text-2xl font-black">Chorlton Water Park</p>
-                  <p class="mt-2 text-sm font-semibold text-green-50">Main car park entrance, 74 Maitland Avenue, M21 7WH</p>
-                </div>
-
-                <ul class="mt-5 space-y-2 text-left text-lg font-bold text-slate-700">
-                  <li class="flex gap-3"><span aria-hidden="true">😊</span><span>A relaxed, welcoming group</span></li>
-                  <li class="flex gap-3"><span aria-hidden="true">👟</span><span>All abilities welcome</span></li>
-                  <li class="flex gap-3"><span aria-hidden="true">🤝</span><span>New members welcome</span></li>
-                </ul>
-
-                <p class="mt-5 rounded-2xl bg-orange-100 px-4 py-3 text-xl font-black text-orange-800">
-                  Come along for a friendly walk!
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-<div class="scrapbook-entry">
-  <img
-    src="assets/scrapbook.png"
-    alt="Friday 12th September scrapbook journal entry"
-    class="scrapbook-image"
-  >
-</div>
-
-<style>
-  .scrapbook-entry {
-    max-width: 850px;
-    margin: 40px auto;
-    padding: 20px;
-    text-align: center;
-  }
-
-  .scrapbook-image {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
-    border-radius: 8px;
-
-    /* subtle scrapbook-style shadow */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
-  }
-
-  /* Makes it look good on phones */
-  @media (max-width: 600px) {
-    .scrapbook-entry {
-      margin: 20px auto;
-      padding: 10px;
-    }
-
-    .scrapbook-image {
-      border-radius: 4px;
-    }
-  }
-</style>
-    
-    <!-- About / who it is for -->
-    <section class="bg-white py-18 sm:py-24">
-      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-          <div>
-            <p class="text-sm font-black uppercase tracking-wide text-red-600">Community, support and connection</p>
-            <h2 class="mt-3 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">A safe and welcoming space</h2>
-            <p class="mt-5 text-lg leading-8 text-slate-600">
-              Sunward Step Manchester brings people together through gentle social activities, friendly conversation and community support.
-            </p>
-          </div>
-
-          <div class="grid gap-4 sm:grid-cols-3">
-            <div class="rounded-3xl bg-sky-50 p-6 ring-1 ring-sky-100">
-              <p class="text-4xl" aria-hidden="true">🌤️</p>
-              <h3 class="mt-4 text-xl font-black">Fresh air</h3>
-              <p class="mt-2 text-slate-600">A simple weekly walk with a friendly group.</p>
-            </div>
-            <div class="rounded-3xl bg-orange-50 p-6 ring-1 ring-orange-100">
-              <p class="text-4xl" aria-hidden="true">💬</p>
-              <h3 class="mt-4 text-xl font-black">Conversation</h3>
-              <p class="mt-2 text-slate-600">A chance to chat, laugh and feel connected.</p>
-            </div>
-            <div class="rounded-3xl bg-red-50 p-6 ring-1 ring-red-100">
-              <p class="text-4xl" aria-hidden="true">🤲</p>
-              <h3 class="mt-4 text-xl font-black">Support</h3>
-              <p class="mt-2 text-slate-600">A welcoming space for anyone needing community.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-<!-- Sunward Step responsive photo gallery: paste this block into your existing HTML page. -->
-
-<section class="gallery-story">
-    <h2>A Very Special Supporter Joined Us on Our Walk! 💙🚶‍♂️</h2>
-
-    <p>
-        We were delighted to welcome the son of one of our members on our recent
-        walk on <strong>Thursday 10th September at Chorlton Water Park</strong>,
-        who came along to show his support for our group.
-    </p>
-
-    <p>
-        He is <strong>Darren Campbell MBE</strong>, former British sprint athlete,
-        Olympic medallist and international champion. Darren has represented his
-        country at the highest level and has been recognised with an MBE for his
-        achievements and contribution to sport.
-    </p>
-
-    <p>
-        It was a real pleasure to have him join us, share some time with the group
-        and support what we do. Having someone of Darren’s experience and
-        achievements walking alongside us made the day even more special.
-    </p>
-
-    <p>
-        A huge thank you, Darren, for coming along and supporting us.
-        <strong>You’re welcome to join us anytime! 💙</strong>
-    </p>
-
-    <p class="closing-message">
-        Together we walk, together we support, together we make a difference. 👣
-    </p>
-</section>
-
-<style>
-.gallery-story {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 30px;
-    background: #f7fbff;
-    border-radius: 12px;
-    font-family: Arial, sans-serif;
-    color: #333;
-    line-height: 1.7;
-}
-
-.gallery-story h2 {
-    margin-top: 0;
-    margin-bottom: 22px;
-    color: #1769aa;
-    font-size: 28px;
-    line-height: 1.3;
-}
-
-.gallery-story p {
-    margin: 0 0 18px;
-    font-size: 17px;
-}
-
-.gallery-story .closing-message {
-    margin-bottom: 0;
-    padding-top: 18px;
-    border-top: 2px solid #d9eaf7;
-    color: #1769aa;
-    font-weight: bold;
-    text-align: center;
-    font-size: 18px;
-}
-
-@media (max-width: 600px) {
-    .gallery-story {
-        margin: 25px 15px;
-        padding: 22px;
-    }
-
-    .gallery-story h2 {
-        font-size: 23px;
-    }
-
-    .gallery-story p {
-        font-size: 16px;
-    }
-}
-</style>
-    
-<section class="ss-photo-gallery" aria-label="Sunward Step photo gallery">
-  <div class="ss-gallery-grid">
-    <button class="ss-thumb" type="button" data-full="assets/IMG_1698.jpg" aria-label="Open photo 1"><img src="assets/IMG_1698-thumb.jpg" alt="Sunward Step walking group photo 1" loading="lazy"></button>
-    <button class="ss-thumb" type="button" data-full="assets/IMG_1705.jpg" aria-label="Open photo 2"><img src="assets/IMG_1705-thumb.jpg" alt="Sunward Step walking group photo 2" loading="lazy"></button>
-    <button class="ss-thumb" type="button" data-full="assets/IMG_1703.jpg" aria-label="Open photo 3"><img src="assets/IMG_1703-thumb.jpg" alt="Sunward Step walking group photo 3" loading="lazy"></button>
-    <button class="ss-thumb" type="button" data-full="assets/IMG_1710.jpg" aria-label="Open photo 4"><img src="assets/IMG_1710-thumb.jpg" alt="Sunward Step walking group photo 4" loading="lazy"></button>
-    <button class="ss-thumb" type="button" data-full="assets/IMG_1698-2.jpg" aria-label="Open photo 5"><img src="assets/IMG_1698-2-thumb.jpg" alt="Sunward Step walking group photo 5" loading="lazy"></button>
-    <button class="ss-thumb" type="button" data-full="assets/IMG_1709.jpg" aria-label="Open photo 6"><img src="assets/IMG_1709-thumb.jpg" alt="Sunward Step walking group photo 6" loading="lazy"></button>
-    <button class="ss-thumb" type="button" data-full="assets/IMG_1707.jpg" aria-label="Open photo 7"><img src="assets/IMG_1707-thumb.jpg" alt="Sunward Step walking group photo 7" loading="lazy"></button>
-  </div>
-
-  <div class="ss-lightbox" id="ssLightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
-    <button class="ss-close" type="button" aria-label="Close photo viewer">&times;</button>
-    <button class="ss-nav ss-prev" type="button" aria-label="Previous photo">&#10094;</button>
-    <figure>
-      <img class="ss-full-image" alt="">
-      <figcaption class="ss-counter" aria-live="polite"></figcaption>
-    </figure>
-    <button class="ss-nav ss-next" type="button" aria-label="Next photo">&#10095;</button>
-  </div>
-</section>
-
-<style>
-.ss-photo-gallery {
-  /* Space between the gallery and the contact section below */
-  margin-bottom: 80px;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.ss-gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 160px));
-  justify-content: center;
-  gap: 12px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.ss-thumb {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: none;
-  cursor: pointer;
-}
-
-.ss-thumb img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-@media (max-width: 600px) {
-  .ss-photo-gallery {
-    margin-bottom: 50px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .ss-gallery-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-  }
-}
-    
-    <!-- Free Event (temporarily hidden until the next event is announced) -->
-    <section id="community-event" class="hidden relative overflow-hidden bg-gradient-to-br from-yellow-300 via-orange-300 to-red-400 py-20">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.35),transparent_25rem)]"></div>
-
-      <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-4xl rounded-[2rem] border-4 border-white/80 bg-white/92 p-6 shadow-2xl shadow-red-900/20 sm:p-10">
-          <div class="text-center">
-            <p class="mx-auto mb-4 inline-flex rounded-full bg-sky-700 px-4 py-2 text-sm font-black uppercase tracking-wide text-white">
-              Our first Xmas Party!
-            </p>
-            <h2 class="text-4xl font-black tracking-tight text-slate-900 sm:text-6xl">
-              Free warm food, music, entertainment & raffle
-            </h2>
-            <p class="mx-auto mt-5 max-w-2xl text-lg font-semibold leading-8 text-slate-700">
-              Providing free warm food, refreshments, music, entertainment, dancing, friendly conversation, laughter and a raffle.
-            </p>
-          </div>
-
-          <div class="mt-8 grid gap-4 md:grid-cols-3">
-            <div class="rounded-3xl bg-slate-900 p-6 text-white">
-              <p class="text-sm font-black uppercase tracking-wide text-orange-200">Date</p>
-              <p class="mt-2 text-3xl font-black">13th December 2026</p>
-            </div>
-            <div class="rounded-3xl bg-sky-700 p-6 text-white">
-              <p class="text-sm font-black uppercase tracking-wide text-sky-100">Time</p>
-              <p class="mt-2 text-3xl font-black">5:00 PM – 10:00 PM</p>
-            </div>
-            <div class="rounded-3xl bg-orange-100 p-6 text-slate-900">
-              <p class="text-sm font-black uppercase tracking-wide text-orange-700">Who for?</p>
-              <p class="mt-2 text-xl font-black">People aged 40+, carers and anyone experiencing loneliness or isolation.</p>
-            </div>
-          </div>
-
-          <div class="mt-6 rounded-3xl border-2 border-dashed border-red-300 bg-yellow-50 p-6">
-            <p class="text-sm font-black uppercase tracking-wide text-red-600">Location</p>
-            <p class="mt-2 text-2xl font-black text-slate-900">West Indian Sports & Social Club</p>
-            <p class="text-lg font-bold text-slate-700">Westwood Street, Manchester M14 4SW</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="bg-slate-900 py-16 text-white">
-      <div class="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
-        <div>
-          <h2 class="text-4xl font-black tracking-tight">Want to come along?</h2>
-          <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
-            New members are always welcome! Contact Sunward Step Manchester or find us on <a href="https://www.tiktok.com/@sunwardstepmanchester" target="_blank" rel="noopener noreferrer" class="font-bold underline hover:text-white">TikTok</a> and <a href="https://www.facebook.com/profile.php?id=61584350194642" target="_blank" rel="noopener noreferrer" class="font-bold underline hover:text-white">Facebook</a>.
-          </p>
-        </div>
-
-        <div class="rounded-3xl bg-white p-6 text-slate-900">
-          <h3 class="text-2xl font-black">Contact details</h3>
-          <div class="mt-5 space-y-4">
-            <a href="tel:+447344508361" class="flex items-center gap-3 rounded-2xl bg-sky-50 p-4 font-black text-sky-800 hover:bg-sky-100">
-              <span aria-hidden="true">📞</span>
-              <span>07344 508361</span>
-            </a>
-            <a href="mailto:email@sunwardstep.com" class="flex items-center gap-3 rounded-2xl bg-orange-50 p-4 font-black text-orange-800 hover:bg-orange-100">
-              <span aria-hidden="true">✉️</span>
-              <span>email@sunwardstep.com</span>
-            </a>
-            <div class="flex items-center gap-3 rounded-2xl bg-green-50 p-4">
-              <span aria-hidden="true">📱</span>
-              <div class="flex gap-3 font-black">
-                <a href="https://www.tiktok.com/@sunwardstepmanchester" target="_blank" rel="noopener noreferrer" class="text-green-800 hover:text-green-900 underline">TikTok</a>
-                <span class="text-green-800">&amp;</span>
-                <a href="https://www.facebook.com/profile.php?id=61584350194642" target="_blank" rel="noopener noreferrer" class="text-green-800 hover:text-green-900 underline">Facebook</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-slate-950 py-8 text-center text-sm font-semibold text-slate-400">
-    <p>&copy; 2026 Sunward Step Manchester. All rights reserved.</p>
-  </footer>
-
+    <section id="walking-group" class="hero-pattern relative overflow-hidden"><div class="mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8"><div><p class="mb-4 inline-flex rounded-full bg-orange-100 px-4 py-2 text-sm font-black uppercase tracking-wide text-orange-700">Wednesdays &amp; Thursdays at 1:00 PM</p><h1 class="max-w-3xl text-5xl font-black leading-[.95] tracking-tight sm:text-6xl lg:text-7xl">Join our friendly <span class="block text-green-700">walking groups</span></h1><p class="mt-6 max-w-2xl text-xl font-semibold leading-8 text-slate-700">A relaxed, welcoming group for friendly walks, conversation and connection in the community.</p><a href="#contact" class="mt-8 inline-flex rounded-2xl bg-sky-600 px-7 py-4 font-black text-white hover:bg-sky-700">Get in touch</a></div><div class="grid gap-6"><div class="rounded-[2rem] border-4 border-white bg-gradient-to-b from-sky-100 via-white to-green-100 p-5 shadow-2xl"><div class="rounded-[1.5rem] border border-green-200 bg-white/80 p-6 text-center"><img src="assets/sunwardsteps-logo.png" alt="Sunward Step Manchester" class="mx-auto mb-5 h-24 w-auto rounded-2xl object-contain"><div class="rounded-2xl bg-green-700 px-5 py-4 text-white"><p class="text-sm font-black uppercase">Meeting point</p><p class="mt-1 text-2xl font-black">Alexandra Park</p><p class="mt-2 text-sm">Every Wednesday at 1:00 PM</p></div></div></div><div class="rounded-[2rem] border-4 border-white bg-gradient-to-b from-sky-100 via-white to-green-100 p-5 shadow-2xl"><div class="rounded-[1.5rem] border border-green-200 bg-white/80 p-6 text-center"><img src="assets/sunwardsteps-logo.png" alt="Sunward Step Manchester" class="mx-auto mb-5 h-24 w-auto rounded-2xl object-contain"><div class="rounded-2xl bg-green-700 px-5 py-4 text-white"><p class="text-sm font-black uppercase">Meeting point</p><p class="mt-1 text-2xl font-black">Chorlton Water Park</p><p class="mt-2 text-sm">Every Thursday at 1:00 PM</p></div></div></div></div></div></section>
+    <section class="bg-white py-16"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><h2 class="text-4xl font-black">A safe and welcoming space</h2><p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">Sunward Step Manchester brings people together through gentle social activities, friendly conversation and community support.</p></div></section>
+    <section class="ss-photo-gallery" aria-label="Sunward Step photo gallery"><div class="ss-gallery-grid">
+      <button class="ss-thumb" type="button" data-full="assets/IMG_1698.jpg" aria-label="Open photo 1"><img src="assets/IMG_1698-thumb.jpg" alt="Sunward Step walking group photo 1" loading="lazy"></button>
+      <button class="ss-thumb" type="button" data-full="assets/IMG_1705.jpg" aria-label="Open photo 2"><img src="assets/IMG_1705-thumb.jpg" alt="Sunward Step walking group photo 2" loading="lazy"></button>
+      <button class="ss-thumb" type="button" data-full="assets/IMG_1703.jpg" aria-label="Open photo 3"><img src="assets/IMG_1703-thumb.jpg" alt="Sunward Step walking group photo 3" loading="lazy"></button>
+      <button class="ss-thumb" type="button" data-full="assets/IMG_1710.jpg" aria-label="Open photo 4"><img src="assets/IMG_1710-thumb.jpg" alt="Sunward Step walking group photo 4" loading="lazy"></button>
+      <button class="ss-thumb" type="button" data-full="assets/IMG_1698-2.jpg" aria-label="Open photo 5"><img src="assets/IMG_1698-2-thumb.jpg" alt="Sunward Step walking group photo 5" loading="lazy"></button>
+      <button class="ss-thumb" type="button" data-full="assets/IMG_1709.jpg" aria-label="Open photo 6"><img src="assets/IMG_1709-thumb.jpg" alt="Sunward Step walking group photo 6" loading="lazy"></button>
+      <button class="ss-thumb" type="button" data-full="assets/IMG_1707.jpg" aria-label="Open photo 7"><img src="assets/IMG_1707-thumb.jpg" alt="Sunward Step walking group photo 7" loading="lazy"></button>
+    </div><div class="ss-lightbox" id="ssLightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden><button class="ss-close" type="button" aria-label="Close photo viewer">&times;</button><button class="ss-nav ss-prev" type="button" aria-label="Previous photo">&#10094;</button><figure><img class="ss-full-image" alt=""><figcaption class="ss-counter" aria-live="polite"></figcaption></figure><button class="ss-nav ss-next" type="button" aria-label="Next photo">&#10095;</button></div></section>
+    <section id="contact" class="bg-slate-900 py-16 text-white"><div class="mx-auto max-w-7xl px-4 sm:px-6"><h2 class="text-4xl font-black">Want to come along?</h2><p class="mt-4 text-lg text-slate-300">New members are always welcome! Contact Sunward Step Manchester.</p><div class="mt-6 rounded-3xl bg-white p-6 text-slate-900"><a href="tel:+447344508361" class="font-black text-sky-800">📞 07344 508361</a><br><a href="mailto:email@sunwardstep.com" class="font-black text-orange-800">✉️ email@sunwardstep.com</a></div></div></section>
+  </main><footer class="bg-slate-950 py-8 text-center text-sm font-semibold text-slate-400">&copy; 2026 Sunward Step Manchester. All rights reserved.</footer>
   <script>
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-
-    mobileMenuBtn.addEventListener('click', () => {
-      const isHidden = mobileMenu.classList.toggle('hidden');
-      mobileMenuBtn.setAttribute('aria-expanded', String(!isHidden));
-    });
-
-    document.querySelectorAll('#mobileMenu a').forEach((link) => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    // Gallery script
-    (function() {
-      const thumbs = Array.from(document.querySelectorAll('.gallery-thumb'));
-      const modal = document.getElementById('galleryModal');
-      const modalImage = document.getElementById('galleryModalImage');
-      const closeBtn = document.getElementById('galleryClose');
-      const prevBtn = document.getElementById('galleryPrev');
-      const nextBtn = document.getElementById('galleryNext');
-      const prevMobile = document.getElementById('galleryPrevMobile');
-      const nextMobile = document.getElementById('galleryNextMobile');
-
-      if (!thumbs.length || !modal) return; // nothing to do
-
-      // Build an array of full-size image urls from data-full attributes
-      const images = thumbs.map(t => t.getAttribute('data-full'));
-      const alts = thumbs.map(t => t.querySelector('img')?.alt || 'Gallery image');
-      let current = 0;
-
-      function open(index) {
-        current = (index + images.length) % images.length;
-        modalImage.style.opacity = 0;
-        modalImage.src = images[current];
-        modalImage.alt = alts[current];
-        modal.classList.remove('hidden');
-        // small timeout to allow image load; fade in
-        setTimeout(() => { modalImage.style.opacity = 1; }, 30);
-        // show desktop arrows if wide enough
-        if (window.innerWidth >= 768) {
-          prevBtn.classList.remove('hidden');
-          nextBtn.classList.remove('hidden');
-        }
-        // trap focus on close button
-        closeBtn.focus();
-      }
-
-      function close() {
-        modal.classList.add('hidden');
-        modalImage.src = '';
-      }
-
-      function showNext() { open(current + 1); }
-      function showPrev() { open(current - 1); }
-
-      thumbs.forEach(t => t.addEventListener('click', (e) => {
-        const i = parseInt(t.getAttribute('data-index') || '0', 10);
-        open(i);
-      }));
-
-      closeBtn.addEventListener('click', close);
-      prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
-      nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
-      prevMobile && prevMobile.addEventListener('click', showPrev);
-      nextMobile && nextMobile.addEventListener('click', showNext);
-
-      // Close when clicking outside the image
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) close();
-      });
-
-      // Keyboard support
-      document.addEventListener('keydown', (e) => {
-        if (modal.classList.contains('hidden')) return;
-        if (e.key === 'Escape') close();
-        if (e.key === 'ArrowRight') showNext();
-        if (e.key === 'ArrowLeft') showPrev();
-      });
-
-      // Preload neighbours for smoother navigation
-      function preload(index) {
-        const url = images[(index + images.length) % images.length];
-        const img = new Image(); img.src = url;
-      }
-
-      // Update preload whenever image changes
-      const observer = new MutationObserver(() => { preload(current+1); preload(current-1); });
-      observer.observe(modalImage, { attributes: true, attributeFilter: ['src'] });
-
-    })();
+    mobileMenuBtn.addEventListener('click', () => { const hidden = mobileMenu.classList.toggle('hidden'); mobileMenuBtn.setAttribute('aria-expanded', String(!hidden)); });
+    const thumbs = [...document.querySelectorAll('.ss-thumb')];
+    const lightbox = document.getElementById('ssLightbox');
+    const fullImage = lightbox.querySelector('.ss-full-image');
+    const counter = lightbox.querySelector('.ss-counter');
+    const close = lightbox.querySelector('.ss-close');
+    let current = 0;
+    const images = thumbs.map((thumb) => ({ src: thumb.dataset.full, alt: thumb.querySelector('img').alt }));
+    function show(index) { current = (index + images.length) % images.length; fullImage.src = images[current].src; fullImage.alt = images[current].alt; counter.textContent = `${current + 1} of ${images.length}`; lightbox.hidden = false; close.focus(); }
+    function hide() { lightbox.hidden = true; fullImage.removeAttribute('src'); }
+    thumbs.forEach((thumb, index) => thumb.addEventListener('click', () => show(index)));
+    close.addEventListener('click', hide);
+    lightbox.querySelector('.ss-prev').addEventListener('click', () => show(current - 1));
+    lightbox.querySelector('.ss-next').addEventListener('click', () => show(current + 1));
+    lightbox.addEventListener('click', (event) => { if (event.target === lightbox) hide(); });
+    document.addEventListener('keydown', (event) => { if (lightbox.hidden) return; if (event.key === 'Escape') hide(); if (event.key === 'ArrowLeft') show(current - 1); if (event.key === 'ArrowRight') show(current + 1); });
   </script>
-
-     <!-- Contact -->
-    <section id="contact" class="bg-slate-900 py-16 text-white">
-      <div class="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
-        <div>
-          <h2 class="text-4xl font-black tracking-tight">Want to come along?</h2>
-          <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">
-            New members are always welcome! Contact Sunward Step Manchester or find us on <a href="https://www.tiktok.com/@sunwardstepmanchester" target="_blank" rel="noopener noreferrer" class="font-bold underline hover:text-white">TikTok</a> and <a href="https://www.facebook.com/profile.php?id=61584350194642" target="_blank" rel="noopener noreferrer" class="font-bold underline hover:text-white">Facebook</a>.
-          </p>
-        </div>
-
-        <div class="rounded-3xl bg-white p-6 text-slate-900">
-          <h3 class="text-2xl font-black">Contact details</h3>
-          <div class="mt-5 space-y-4">
-            <a href="tel:+447344508361" class="flex items-center gap-3 rounded-2xl bg-sky-50 p-4 font-black text-sky-800 hover:bg-sky-100">
-              <span aria-hidden="true">📞</span>
-              <span>07344 508361</span>
-            </a>
-            <a href="mailto:email@sunwardstep.com" class="flex items-center gap-3 rounded-2xl bg-orange-50 p-4 font-black text-orange-800 hover:bg-orange-100">
-              <span aria-hidden="true">✉️</span>
-              <span>email@sunwardstep.com</span>
-            </a>
-            <div class="flex items-center gap-3 rounded-2xl bg-green-50 p-4">
-              <span aria-hidden="true">📱</span>
-              <div class="flex gap-3 font-black">
-                <a href="https://www.tiktok.com/@sunwardstepmanchester" target="_blank" rel="noopener noreferrer" class="text-green-800 hover:text-green-900 underline">TikTok</a>
-                <span class="text-green-800">&amp;</span>
-                <a href="https://www.facebook.com/profile.php?id=61584350194642" target="_blank" rel="noopener noreferrer" class="text-green-800 hover:text-green-900 underline">Facebook</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-slate-950 py-8 text-center text-sm font-semibold text-slate-400">
-    <p>&copy; 2026 Sunward Step Manchester. All rights reserved.</p>
-  </footer>
- 
 </body>
 </html>
-
-      
-                                                
