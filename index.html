@@ -36,6 +36,121 @@
       <div class="hidden md:block"><div class="ml-10 flex items-center gap-2"><a href="#walking-group" class="rounded-full px-4 py-2 text-sm font-bold text-slate-700 hover:bg-sky-50">Walking Group</a><a href="#contact" class="rounded-full bg-sky-600 px-5 py-2 text-sm font-black text-white hover:bg-sky-700">Contact</a></div></div>
       <button id="mobileMenuBtn" class="inline-flex items-center md:hidden" aria-expanded="false" aria-controls="mobileMenu"><svg class="h-7 w-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" /></svg></button>
     </div>
+
+<section class="daily-video">
+    <div class="daily-video__date">
+        17th September 2026
+    </div>
+
+    <div class="daily-video__player">
+        <video controls playsinline preload="metadata">
+            <source src="assets/annica_vid.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="daily-video__message">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>
+                            Some days, you’re healing.<br>
+                            Some days, you’re surviving.<br>
+                            And some days, you’re simply trying to stay alive.
+                        </p>
+
+                        <p>
+                            Whatever kind of day you’re having, give yourself grace.
+                            You don’t have to have it all figured out. Just keep going,
+                            one day at a time. ❤️
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<style>
+    .daily-video {
+        width: min(100% - 40px, 900px);
+        margin: 40px auto;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #222;
+    }
+
+    /* Date header aligned to the left */
+    .daily-video__date {
+        text-align: left;
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e5e5e5;
+    }
+
+    /* Responsive video */
+    .daily-video__player {
+        width: 100%;
+        margin-bottom: 24px;
+        overflow: hidden;
+        border-radius: 10px;
+        background: #000;
+    }
+
+    .daily-video__player video {
+        display: block;
+        width: 100%;
+        max-height: 650px;
+        object-fit: contain;
+        background: #000;
+    }
+
+    /* Message table */
+    .daily-video__message table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #f8f8f8;
+        border: 1px solid #e2e2e2;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .daily-video__message td {
+        padding: 28px 32px;
+        font-size: 18px;
+        line-height: 1.7;
+        text-align: left;
+    }
+
+    .daily-video__message p {
+        margin: 0 0 20px;
+    }
+
+    .daily-video__message p:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+        .daily-video {
+            width: calc(100% - 24px);
+            margin: 24px auto;
+        }
+
+        .daily-video__date {
+            font-size: 22px;
+        }
+
+        .daily-video__message td {
+            padding: 20px;
+            font-size: 16px;
+        }
+    }
+</style>
+
+    
     <div id="mobileMenu" class="hidden border-t border-orange-100 bg-white md:hidden"><div class="space-y-1 px-4 py-4"><a href="#walking-group" class="block rounded-xl px-4 py-3 font-bold">Walking Group</a><a href="#contact" class="block rounded-xl px-4 py-3 font-bold">Contact</a></div></div>
   </nav>
   <main id="home">
