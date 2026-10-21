@@ -28,64 +28,67 @@
     .daily-video-section { position: relative; z-index: 1; }
     .daily-video {
         width: min(100% - 40px, 860px);
-        margin: 28px auto 48px;
+        margin: 28px auto 40px;
         font-family: Arial, Helvetica, sans-serif;
         color: #222;
-        background: rgba(255,255,255,0.42);
-        border: 1px solid rgba(148,163,184,0.25);
-        border-radius: 22px;
-        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-        padding: 28px 22px 18px;
+        background: rgba(255,255,255,0.8);
+        border: 1px solid rgba(148,163,184,0.22);
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+        padding: 18px 18px 14px;
     }
     .daily-video__date {
         text-align: left;
-        font-size: 20px;
+        font-size: 11px;
         font-weight: 700;
-        letter-spacing: 0.02em;
-        margin-bottom: 18px;
-        padding-bottom: 8px;
-        border-bottom: 1px solid rgba(148,163,184,0.35);
-        color: #475569;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
+        margin-bottom: 14px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(148,163,184,0.28);
+        color: #64748b;
     }
     .daily-video__player {
         width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
         overflow: hidden;
-        border-radius: 16px;
+        border-radius: 12px;
         background: #000;
-        border: 1px solid rgba(15,23,42,0.08);
+        border: 1px solid rgba(15,23,42,0.06);
     }
     .daily-video__player video {
         display: block;
         width: 100%;
-        max-height: 520px;
+        max-height: 440px;
         object-fit: contain;
         background: #000;
+    }
+    .daily-video__message {
+        margin-top: 2px;
     }
     .daily-video__message table {
         width: 100%;
         border-collapse: collapse;
-        background: #fffdfb;
-        border: 1px solid rgba(226,232,240,0.9);
-        border-radius: 16px;
+        background: rgba(255,255,255,0.92);
+        border: 1px solid rgba(226,232,240,0.7);
+        border-radius: 12px;
         overflow: hidden;
     }
     .daily-video__message td {
-        padding: 22px 24px;
-        font-size: 17px;
-        line-height: 1.7;
+        padding: 18px 20px;
+        font-size: 16px;
+        line-height: 1.55;
         text-align: left;
         color: #334155;
     }
     .daily-video__message p {
-        margin: 0 0 18px;
+        margin: 0 0 14px;
     }
     .daily-video__message p:last-child {
         margin-bottom: 0;
     }
     #contact { display: block; visibility: visible; position: relative; z-index: 1; }
-    @media (max-width: 600px) { .ss-photo-gallery { margin-bottom: 50px; padding: 0 10px; } .ss-gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; } .ss-nav { width: 40px; height: 40px; } .daily-video { width: calc(100% - 24px); margin: 24px auto 36px; padding: 18px 14px 12px; } .daily-video__date { font-size: 16px; } .daily-video__message td { padding: 18px 16px; font-size: 15px; } }
+    @media (max-width: 600px) { .ss-photo-gallery { margin-bottom: 50px; padding: 0 10px; } .ss-gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; } .ss-nav { width: 40px; height: 40px; } .daily-video { width: calc(100% - 24px); margin: 24px auto 32px; padding: 14px 12px 10px; } .daily-video__date { font-size: 10px; letter-spacing: 0.14em; } .daily-video__player video { max-height: 320px; } .daily-video__message td { padding: 14px 16px; font-size: 15px; line-height: 1.5; } }
   </style>
 </head>
 <body class="text-slate-900 antialiased">
