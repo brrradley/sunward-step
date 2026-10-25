@@ -32,11 +32,30 @@
       display: flex; flex-direction: column; gap: 18px;
       padding: 28px 28px 30px;
     }
+    .ss-update-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(250px, 0.9fr);
+      gap: 22px;
+      align-items: center;
+    }
+    .ss-update-copy {
+      min-width: 0;
+    }
     .ss-kicker {
       display: inline-flex; align-items: center; width: fit-content;
       padding: 8px 12px; border-radius: 999px;
       background: rgba(14,165,233,0.10); color: #0369a1;
       font-size: 11px; font-weight: 900; letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .ss-update-poster {
+      display: block;
+      width: 100%;
+      max-width: 360px;
+      margin-left: auto;
+      border-radius: 20px;
+      box-shadow: 0 18px 40px rgba(15,23,42,0.12);
+      border: 2px solid rgba(251,146,60,0.18);
+      background: #fff;
     }
     .ss-side-stack { display: grid; gap: 16px; }
     .ss-side-card {
@@ -164,6 +183,10 @@
       margin-bottom: 0;
     }
     #contact { display: block; visibility: visible; position: relative; z-index: 1; }
+    @media (max-width: 900px) {
+      .ss-update-layout { grid-template-columns: 1fr; }
+      .ss-update-poster { margin: 0 auto; max-width: 420px; }
+    }
     @media (max-width: 600px) {
       .ss-photo-gallery { margin-bottom: 50px; padding: 0 10px; }
       .ss-gallery-grid { grid-template-columns: repeat(3, minmax(90px, 1fr)); gap: 8px; }
@@ -225,11 +248,55 @@
       <div class="ss-news-grid lg:grid-cols-[1.5fr_0.7fr]">
         <article class="ss-update-card">
           <div class="ss-update-card__inner">
+            <div class="ss-update-layout">
+              <div class="ss-update-copy">
+                <span class="ss-kicker">Update</span>
+                <h2 class="mt-4 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">25th October 2026</h2>
+                <div class="mt-4 space-y-4 text-lg leading-8 text-slate-700">
+                  <p>Our FREE Community Tea Party on Sunday 1st November is a chance to come along, have a cup of tea, enjoy some music, play bingo, join in the raffle, and most importantly meet and talk to other people.</p>
+                  <p>You don’t have to know anyone.<br>You don’t have to come with a group.<br>You don’t have to feel confident.</p>
+                  <p>Just come as you are ❤️</p>
+                  <p>Whether you’re feeling lonely, new to the area, looking to make friends, or simply fancy an afternoon/evening around friendly people, you are welcome.</p>
+                  <p>🎟️ FREE EVENT<br>📅 Sunday 1st November<br>⏰ 3pm–9pm<br>📍 West Indian Sports &amp; Social Club, Westwood St, M14 4SW</p>
+                  <p>Come for the tea. Stay for the company. Leave with a smile ❤️</p>
+                  <p>Donations are welcome, but there is absolutely no pressure to donate.</p>
+                </div>
+              </div>
+              <img src="assets/tea_party_2026.jpeg" alt="Sunward Step Community Tea Party poster" class="ss-update-poster" loading="eager">
+            </div>
+          </div>
+        </article>
+
+        <aside class="ss-side-stack">
+          <div class="ss-side-card ss-side-card--accent">
+            <span class="ss-side-card__eyebrow">Latest</span>
+            <h3 class="ss-side-card__title">Tea Party</h3>
+            <p class="ss-side-card__text">A free community afternoon of tea, music, games and connection.</p>
+          </div>
+          <div class="ss-side-card">
+            <span class="ss-side-card__eyebrow">Fundraising</span>
+            <h3 class="ss-side-card__title">Park Crawl</h3>
+            <p class="ss-side-card__text">The last event was a great success and the community spirit was fantastic.</p>
+          </div>
+          <div class="ss-side-card">
+            <span class="ss-side-card__eyebrow">Next up</span>
+            <h3 class="ss-side-card__title">Coming soon</h3>
+            <p class="ss-side-card__text">Keep an eye out for more local events, walks and community meet-ups.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="ss-news-shell">
+      <div class="ss-news-grid lg:grid-cols-[1.5fr_0.7fr]">
+        <article class="ss-update-card">
+          <div class="ss-update-card__inner">
             <span class="ss-kicker">Update</span>
             <h2 class="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">23rd October 2026</h2>
             <div class="space-y-4 text-lg leading-8 text-slate-700">
-              <p>Our fundraising Park Crawl last month was a great success! We asked for just a £1 per park visited on the day, we planned for 10, but we managed to go above and beyond and visit 12 parks, raising £160. Plus, donations from those who couldn’t make it brought our total to £230! We’re truly grateful to everyone who contributed — big or small — and it helped us raise enough to get our new table and benches for the group.</p>
-              <p>If you would like to add to the donations, use our <a href="https://www.gofundme.com/f/sunwardstep-manchester-fundraiser" class="font-bold text-sky-700 underline decoration-sky-300 underline-offset-4">GoFundMe</a> page and help us keep the momentum going.</p>
+              <p>Our fundraising Park Crawl last month was a great success! We asked for just a £1 per park visited on the day, we planned for 10, but we managed to go above and beyond and visit 12 parks instead.</p>
+              <p>Alongside the walking group, we enjoyed lots of laughs, great conversations, and a few well-earned breaks. It was a brilliant indicator of what this community can do when we show up for one another.</p>
+              <p>If you would like to add to the donations, use our <a href="https://www.gofundme.com/f/sunwardstep-manchester-fundraiser" class="font-bold text-sky-700 underline decoration-sky-300 underline-offset-2">GoFundMe fundraiser</a>.</p>
             </div>
           </div>
         </article>
@@ -299,11 +366,11 @@
         <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <h2 class="text-4xl font-black tracking-tight text-slate-900">Our community values</h2>
-            <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-600">We believe that being around other people can make a real difference. Sunward Step creates space for meaningful connection, gentle activity and daily encouragement.</p>
+            <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-600">We believe that being around other people can make a real difference. Sunward Step creates space for meaningful connection, support and gentle activity.</p>
             <ul class="mt-7 space-y-4 text-base leading-7 text-slate-700">
-              <li class="flex gap-3"><span class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-700 font-black">✓</span><span>Warm, welcoming atmosphere for people of all backgrounds.</span></li>
-              <li class="flex gap-3"><span class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-700 font-black">✓</span><span>Gentle, realistic movement that fits real life.</span></li>
-              <li class="flex gap-3"><span class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-700 font-black">✓</span><span>Regular opportunities to connect, laugh and feel supported.</span></li>
+              <li class="flex gap-3"><span class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-700 font-black">✓</span><span>Warm, welcoming atmosphere for everyone.</span></li>
+              <li class="flex gap-3"><span class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-700 font-black">✓</span><span>Gentle, realistic activity that suits different energy levels.</span></li>
+              <li class="flex gap-3"><span class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-700 font-black">✓</span><span>Regular opportunities to meet people and build belonging.</span></li>
             </ul>
           </div>
           <div class="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-lg shadow-slate-200/70">
@@ -358,10 +425,10 @@
     <section id="contact" class="bg-slate-900 py-16 text-white">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 class="text-4xl font-black tracking-tight">Want to come along?</h2>
-        <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-300">We’d love to welcome you. If you’re new to Sunward Step or just curious about joining us, get in touch and we’ll let you know more about the next walk and what to expect.</p>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-300">We’d love to welcome you. If you’re new to Sunward Step or just curious about joining us, get in touch and we’ll let you know more.</p>
         <div class="mt-8 flex flex-wrap gap-4">
           <a href="mailto:email@sunwardstep.com" class="rounded-full bg-white px-6 py-3 text-base font-bold text-slate-900 transition hover:bg-slate-100">email@sunwardstep.com</a>
-          <a href="https://www.facebook.com/profile.php?id=61584350194642" class="rounded-full border border-slate-700 px-6 py-3 text-base font-bold text-white transition hover:border-slate-500 hover:bg-slate-800">Find us on Facebook</a>
+          <a href="https://www.facebook.com/profile.php?id=61584350194642" class="rounded-full border border-slate-700 px-6 py-3 text-base font-bold text-white transition hover:border-slate-500">Facebook</a>
         </div>
       </div>
     </section>
